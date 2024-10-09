@@ -88,6 +88,47 @@ class SLL:       #SLL class to create singly linked list
             temp = temp.next
         count +=1
 
+    def reverse(self):
+        if self.start is None:
+            print("List is empty")
+        else:
+            prev = None
+            current = self.start
+            while current is not None:
+                next = current.next
+                current.next = prev
+                prev = current
+                current = next
+            self.start = prev
+            print("List is reversed")
+
+    def min(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            min = temp.item
+            while temp is not None:
+                if temp.item < min:
+                    min = temp.item
+                temp = temp.next
+            return min
+        print('f{min} is the minimum value')
+    
+    def max(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            max = temp.item
+            while temp is not None:
+                if temp.item > max:
+                    max = temp.item
+                temp = temp.next
+            return max
+
+
+
     def __iter__(self):
         return SLLIterator(self.start)
     
@@ -125,8 +166,12 @@ my_list.insert_after(my_list.start.next.next, 50)
 my_list.insert_after(my_list.search(40), 60)
 my_list.delete_item(60)
 my_list.print_list()
-for x in my_list:
-    print(x, end=" ")
-print()
+my_list.reverse()
+my_list.print_list()
+print(my_list.min())
+my_list.insert_at_end(5)
+print(my_list.min())
+print(my_list.max())
 
-print(my_list.start.next.next.item)
+
+# print(my_list.start.next.next.item)
