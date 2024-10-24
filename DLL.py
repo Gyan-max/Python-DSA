@@ -127,7 +127,41 @@ class DLL:
                 print(temp.item, end=' ')
                 temp = temp.next
             print()
+    def __len__(self):
+        count = 0
+        temp = self.start
+        while temp is not None:
+            count += 1
+            temp = temp.next
+        return count
+    
+    def reverse(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = None
+            current = self.start
+            while current is not None:
+                temp = current.prev
+                current.prev = current.next
+                current.next = temp
+                current = current.prev
+            self.start = temp.prev
 
+    def sort(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp is not None:
+                current = temp.next
+                while current is not None:
+                    if temp.item > current.item:
+                        temp.item, current.item = current.item, temp.item
+                    current = current.next
+                temp = temp.next
+
+                
 
 # driver code
 mylist = DLL()
