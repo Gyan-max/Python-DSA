@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self , prev=None, item=None, next=None):
+    def __init__(self, item=None, prev=None, next=None):
         self.prev = prev
         self.item = item
         self.next = next
@@ -10,103 +10,130 @@ class DLL:
 
     def is_empty(self):
         if self.start is None:
-            return True
+            print('List is empty')
         else:
-            return False
+            print('List is not empty')
 
     def insert_at_start(self, data):
         if self.start is None:
-            self.start = Node(None, data, None)
+            n = Node(data)
+            self.start = n
         else:
-            n = Node(None, data, self.start)
+            n = Node(data)
             self.start.prev = n
+            n.next = self.start
             self.start = n
 
     def insert_at_end(self, data):
-        if self.is_empty():
-            self.start = Node(None, data, None)
+        if self.start is None:
+            n = Node(data)
+            self.start = n
         else:
             temp = self.start
             while temp.next is not None:
                 temp = temp.next
-            n = Node(temp, data, None)
+            n = Node(data)
             temp.next = n
-
+            n.prev = temp
+            n.next = None
 
     def search(self, data):
-        temp = self.start
-        while temp is not None:
-           if temp.item == data:
-               print(f'{temp.item} is found ')
-               break
-           temp = temp.next
-        else:
-            print(f'{data} is not found')
-
-
-    def insert_after(self, target_data, new_data):
-        temp = self.start
-        while temp is not None:
-            if temp.item == target_data:
-                n = Node(temp, new_data, temp.next)
-                if temp.next is not None:
-                    temp.next.prev = n
-                temp.next = n
-                print(f'{new_data} is inserted after {target_data}')
-                return
-            temp = temp.next
-        print(f'{target_data} is not found')
-        
-    
-    def print_all(self):
-        temp = self.start
-        while temp is not None:
-            print(temp.item, end=" ")
-            temp = temp.next
-        print()
-
-    def delete_first(self):
-        if self.start is not None:
-            self.start = self.start.next
-            self.start.prev = None
-
-
-    def delete_last(self):
-        if self.start.next is None:
-            self.start = None
+        if self.start is None:
+            print('List is empty')
         else:
             temp = self.start
-            while temp.next.next is not None:
-                temp = temp.next
-            temp.next = None
-
-    def delete_item(self, data):
-        temp = self.start
-        if temp.item == data:
-            self.start = temp.next
-        else:
-            while temp.next is not None:
-                if temp.next.item == data:
-                    temp.next = temp.next.next
+            while temp is not None:
+                if temp.item == data:
+                    print('{data} is found'.format(data=data))
                     break
                 temp = temp.next
             else:
-                print(f'{data} is not found')
+                print('{data} is not found'.format(data=data))
 
 
 
+    def insert_after(self, target, data):
+        if self.start is None:
+            n = Node(data)
+            self.start = n
+        else:
+            temp = self.start
+            while temp is not None:
+                if temp.item == target:
+                    n = Node(data)
+                    n.prev = temp
+                    n.next = temp.next
+                    temp.next = n
+                    break
+                temp = temp.next
+            else:
+                print('Target not found')
 
+
+    def insert_before(self, target, data):
+        if self.start is None:
+            n = Node(data)
+            self.start = n
+        else:
+            temp = self.start
+            while temp is not None:
+                if temp.item == target:
+                    n = Node(data)
+                    n.prev = temp.prev
+                    n.next = temp
+                    temp.prev = n
+                    break
+                temp = temp.next
+            else:
+                print('Target not found')
+
+    def delete_first(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            self.start = self.start.next
+            self.start.prev = None
+
+    def delete_last(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp.next is not None:
+                temp = temp.next
+            temp.prev.next = None
+
+    def delete_item(self, data):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp is not None:
+                if temp.item == data:
+                    temp.prev.next = temp.next
+                    temp.next.prev = temp.prev
+                    break
+                temp = temp.next
+            else:
+                print('Item not found')
+
+
+    def display(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp is not None:
+                print(temp.item, end=' ')
+                temp = temp.next
+            print()
+
+
+# driver code
 mylist = DLL()
-
 mylist.insert_at_start(10)
-mylist.insert_at_start(30)
-mylist.insert_at_end(50)
-mylist.insert_at_end(20)
+mylist.insert_at_start(20)
+mylist.insert_at_end(30)
 mylist.insert_at_end(40)
-# mylist.search(30)
-# mylist.search(80)
-# mylist.insert_after(mylist.search(10), 70)
-# mylist.delete_first()
-# mylist.delete_last()
-mylist.delete_item(50)
-mylist.print_all()
+mylist.insert_after(20, 25)
+mylist.display()
