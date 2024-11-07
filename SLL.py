@@ -126,6 +126,21 @@ class SLL:       #SLL class to create singly linked list
                     max = temp.item
                 temp = temp.next
             return max
+        
+    def reverse(self):
+        if self.start is not None:
+            prev = None
+            current = self.start
+            while current is not None:
+                next = current.next
+                current.next = prev
+                prev = current
+                current = next
+            self.start = prev
+            print("List is reversed")
+        else:
+            print("List is empty")
+            
 
 
 

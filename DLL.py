@@ -91,8 +91,7 @@ class DLL:
         if self.start is None:
             print('List is empty')
         else:
-            self.start = self.start.next
-            self.start.prev = None
+            self.start = self.start.next 
 
     def delete_last(self):
         if self.start is None:
@@ -124,7 +123,7 @@ class DLL:
         else:
             temp = self.start
             while temp is not None:
-                print(temp.item, end=' ')
+                print(f'{temp.item} ', end=' ')
                 temp = temp.next
             print()
     def __len__(self):
@@ -138,15 +137,17 @@ class DLL:
     def reverse(self):
         if self.start is None:
             print('List is empty')
-        else:
-            temp = None
-            current = self.start
-            while current is not None:
-                temp = current.prev
-                current.prev = current.next
-                current.next = temp
-                current = current.prev
-            self.start = temp.prev
+            return
+        current = self.start
+        prev_node = None
+        while current is not None:
+            next_node = current.next
+            current.next = prev_node
+            current.prev = next_node
+            prev_node = current
+            current = next_node
+        self.start = prev_node
+            
 
     def sort(self):
         if self.start is None:
@@ -167,7 +168,17 @@ class DLL:
 mylist = DLL()
 mylist.insert_at_start(10)
 mylist.insert_at_start(20)
-mylist.insert_at_end(30)
-mylist.insert_at_end(40)
-mylist.insert_after(20, 25)
+mylist.insert_at_start(30)
+mylist.insert_at_start(40)
+mylist.insert_at_end(50)
+mylist.insert_at_end(60)
+mylist.delete_first()
+mylist.delete_last()
+mylist.delete_item(20)
+print(f'length of the list is: {len(mylist)}')
+mylist.search(30)
+mylist.reverse()
+
+
+
 mylist.display()
