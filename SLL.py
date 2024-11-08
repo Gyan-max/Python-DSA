@@ -171,22 +171,22 @@ class SLLIterator:
          
 
 #driver_code
-my_list = SLL()
+# my_list = SLL()
 
-my_list.insert_at_start(10)
-my_list.insert_at_start(20)
-my_list.insert_at_start(30)
-my_list.insert_after(my_list.search(30), 40)
-my_list.insert_after(my_list.start.next.next, 50)
-my_list.insert_after(my_list.search(40), 60)
-my_list.delete_item(60)
-my_list.print_list()
-my_list.reverse()
-my_list.print_list()
-print(my_list.min())
-my_list.insert_at_end(5)
-print(my_list.min())
-print(my_list.max())
+# my_list.insert_at_start(10)
+# my_list.insert_at_start(20)
+# my_list.insert_at_start(30)
+# my_list.insert_after(my_list.search(30), 40)
+# my_list.insert_after(my_list.start.next.next, 50)
+# my_list.insert_after(my_list.search(40), 60)
+# my_list.delete_item(60)
+# my_list.print_list()
+# my_list.reverse()
+# my_list.print_list()
+# print(my_list.min())
+# my_list.insert_at_end(5)
+# print(my_list.min())
+# print(my_list.max())
 
 
 # print(my_list.start.next.next.item)
