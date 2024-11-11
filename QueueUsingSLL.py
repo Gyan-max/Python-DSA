@@ -50,7 +50,10 @@ class Queue:
             return temp.item
         
     def size(self):
-        temp = self.start
+        if self.start is None:
+            return 0
+        else:
+            temp = self.start
         count = 0
         while temp is not None:
             count += 1
