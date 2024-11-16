@@ -172,12 +172,8 @@ mylist.insert_at_start(30)
 mylist.insert_at_start(40)
 mylist.insert_at_end(50)
 mylist.insert_at_end(60)
-mylist.delete_first()
-mylist.delete_last()
-mylist.delete_item(20)
-print(f'length of the list is: {len(mylist)}')
-mylist.search(30)
-mylist.reverse()
+# mylist.delete_first()
+
 
 
 
